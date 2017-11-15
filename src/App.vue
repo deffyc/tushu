@@ -215,7 +215,7 @@
           typeHolder: langConfig.query.cat.typeHolder[this.lang],
           options: ['no','name']
         },
-        girdData: tableData['zh-CN'],
+        girdData: [],
         pageSize: search.pageSize,
         bookInfo:{
           image: '<i class="el-icon-loading"></i>',
@@ -387,8 +387,59 @@
       },
       
       initGirdData () {
-        this.breadcrumbs = []
-        this.girdData = this.tableData[this.lang]
+        let to=this.$route
+        let key=to.query['key'] ? to.query['key'].toUpperCase() : ''
+        let pageno=isNaN(to.query['pageno']) ? 1 : parseInt(to.query['pageno'])
+        this.query={
+          fields:['no','name','path'],
+          className:'Category',
+          routeName: to.name,
+          key: key,
+          pageno: pageno,
+          inputHolder: this.langConfig.query.cat.inputHolder[this.lang],
+          type: this.query.type,
+          typeHolder: this.langConfig.query.cat.typeHolder[this.lang],
+          options: ['no','name']
+        }
+        
+        if(to.name.indexOf('book') >= 0) {
+          this.query.fields = ['id','no','name','author','isbn', 'num', 'price', 'summary', 'image','pageNum']
+          this.query.className = 'Book',
+          this.query.routeName = to.name
+          this.query.inputHolder=this.langConfig.query.book.inputHolder[this.lang]
+          this.query.typeHolder=this.langConfig.query.book.typeHolder[this.lang]
+          this.query.options=['no','name','author','isbn']
+          let that=this
+          let loadingInstance = Loading.service({ fullscreen: true })
+          let callback = function(data) {
+              that.girdData = data
+              loadingInstance.close()
+            }
+            search.getBooks(to.name, key, this.query.fields, this.query.type, pageno, callback)
+        }else {
+          if(key == ''){
+            this.breadcrumbs = []
+            this.girdData = this.tableData['zh-CN']
+          }else{
+            let loadingInstance = Loading.service({ fullscreen: true })
+            let that=this
+            let callback = function(data) {
+              that.girdData = data
+              if(data.length>0 && to.name=='categoryno'){
+                that.breadcrumbs = []
+                let parents= data[0].path.split(';')
+                for (let i=0; i < parents.length-1; i++) {
+                  if(parents[i].indexOf(':')>0) {
+                    that.breadcrumbs.push({'no': parents[i].split(':')[0], 'name': parents[i].split(':')[1]})
+                    if(key == parents[i].split(':')[0]) break
+                  }
+                }
+              } 
+             loadingInstance.close()
+            }
+            search.getCategories(to.name, key, this.query.fields , this.query.type, pageno, callback)
+          }
+        }
         
       },
       
@@ -397,13 +448,14 @@
         this.toRoute(routeName, key, pageno)
       },
       searchBooks(routeName,key){
+        this.query.type=["no"]
         this.toRoute(routeName, key, 1)
       },
       changePage(no) {
         this.toRoute(this.query.routeName, this.query.key, this.query.pageno+no)
       },
       toRoute(routeName,key,pageno) {
-        this.$router.push({name: routeName, query: {key:key, pageno: pageno}})
+        this.$router.push({name: routeName, query: {key:key, pageno: pageno, type: this.query.type.toString()}})
       },
       getSummary(row){
         let that=this
@@ -425,9 +477,8 @@
                 book['pageNum']=bookInfo.pages
               }
               let callback=function(data){
-                console.log(data)
+                //console.log(data)
               }
-              console.log(bookInfo.image)
               search.saveBook(row.id,book,callback)
             }
           }
@@ -454,6 +505,7 @@
       this.getIndexStyle()
       this.getSeparatedStyles()
       this.getFontFiles()
+      this.initGirdData()
     },
 
     mounted () {
@@ -463,57 +515,11 @@
     },
     watch: {
       '$route' (to, from) {
-        let key=to.query['key'] ? to.query['key'].toUpperCase() : ''
-        let pageno=isNaN(to.query['pageno']) ? 1 : parseInt(to.query['pageno'])
-        this.query={
-          fields:['no','name','path'],
-          className:'Category',
-          routeName: to.name,
-          key: key,
-          pageno: pageno,
-          inputHolder: this.langConfig.query.cat.inputHolder[this.lang],
-          type: to.name == from.name && this.query.type.length != 0 ? this.query.type : ['no','name'],
-          typeHolder: this.langConfig.query.cat.typeHolder[this.lang],
-          options: ['no','name']
-        }
-        
+        this.initGirdData()
         if(to.name.indexOf('book') >= 0) {
-          this.query.fields = ['id','no','name','author','isbn', 'num', 'price', 'summary', 'image','pageNum']
-          this.query.className = 'Book',
-          this.query.routeName = to.name
-          this.query.inputHolder=this.langConfig.query.book.inputHolder[this.lang]
-          this.query.typeHolder=this.langConfig.query.book.typeHolder[this.lang]
           this.query.type = to.name == from.name && this.query.type.length != 0 ? this.query.type : ['no']
-          this.query.options=['no','name','author','isbn']
-          let that=this
-          let loadingInstance = Loading.service({ fullscreen: true })
-          let callback = function(data) {
-              that.girdData = data
-              loadingInstance.close()
-            }
-            search.getBooks(to.name, key, this.query.fields, this.query.type, pageno, callback)
-        }else {
-          if(key == ''){
-            this.initGirdData()
-          }else{
-            let loadingInstance = Loading.service({ fullscreen: true })
-            let that=this
-            let callback = function(data) {
-              that.girdData = data
-              if(data.length>0 && to.name=='categoryno'){
-                that.breadcrumbs = []
-                let parents= data[0].path.split(';')
-                for (let i=0; i < parents.length-1; i++) {
-                  if(parents[i].indexOf(':')>0) {
-                    that.breadcrumbs.push({'no': parents[i].split(':')[0], 'name': parents[i].split(':')[1]})
-                    if(key == parents[i].split(':')[0]) break
-                  }
-                }
-              } 
-             loadingInstance.close()
-            }
-            search.getCategories(to.name, key, this.query.fields , this.query.type, pageno, callback)
-          }
+        }else if(to.name.indexOf('category') >= 0){
+          this.query.type =to.name == from.name && this.query.type.length != 0 ? this.query.type : ['no','name']
         }
       }
     }
