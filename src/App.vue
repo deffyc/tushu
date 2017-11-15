@@ -90,8 +90,8 @@
                   <el-popover placement="left" @show="getSummary(scope.row)" @hide="initbookInfo()" title="基本信息">
                     <p style="text-align:center;" v-html="bookInfo.image"></p>
                     <p>简介：{{ bookInfo.summary }}</p>
-                    <p>页数：{{ bookInfo.pages }}</p>
-                    <p>价格：{{ scope.row.price }}</p>
+                    <p>页数：{{ bookInfo.pages }} , 价格：{{ scope.row.price }} 元</p>
+                    <p>馆藏地：{{scope.row.no.split('/')[0]>='I25'?'二楼西室':'二楼东室'}}</p>
                     <p style="text-align:center;"><el-button type="danger" round @click.native.prevent="$refs.page.click()">关闭</el-button></p>
                     <div slot="reference" class="name-wrapper" style="color: #409EFF; cursor: pointer;">
                       {{ scope.row.name }}({{ scope.row.num }}本)
