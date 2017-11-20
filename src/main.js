@@ -8,6 +8,7 @@ import './styles/index.scss'
 require('es6-promise').polyfill()
 
 Vue.use(Element, { size: 'mini' })
+Vue.prototype.$ELEMENT = { size: 'mini' }
 Vue.config.productionTip = false
 
 new Vue({ // eslint-disable-line

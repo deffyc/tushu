@@ -87,7 +87,7 @@
               <template v-if="query.routeName.indexOf('book') >=0">
                 <el-table-column :prop="item" :label="langConfig.table[query.className][item][lang]" :key="query.routeName+item" min-width="100">
                  <template slot-scope="scope">
-                  <el-popover placement="left" @show="getSummary(scope.row)" @hide="initbookInfo()" title="基本信息">
+                  <el-popover placement="bottom" @show="getSummary(scope.row)" @hide="initbookInfo()" title="基本信息">
                     <p style="text-align:center;" v-html="bookInfo.image"></p>
                     <p>简介：{{ bookInfo.summary }}</p>
                     <p>页数：{{ bookInfo.pages }} , 价格：{{ scope.row.price }} 元</p>
