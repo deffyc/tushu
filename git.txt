@@ -1,3 +1,4 @@
+cd disk
 git add *
 git commit -m 'upload'
 git push -u origin master -f
