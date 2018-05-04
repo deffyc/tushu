@@ -486,7 +486,7 @@
         if(typeof(row.summary)=='undefined' || row.summary==''){
             search.getDoubanInfo(row.isbn,callback)
         }else{
-            that.bookInfo.image='<img src="'+row.image+'">'
+            that.bookInfo.image='<img src="'+"https://images.weserv.nl/?url="+row.image.replace("https://","")+'">'
             that.bookInfo.summary=row.summary
             that.bookInfo.pages=row.pageNum
         }

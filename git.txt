@@ -3,7 +3,7 @@ git add *
 git commit -m 'upload'
 git push -u origin master:src -f
 
-cd disk
+cd dist
 git add *
 git commit -m 'upload'
 git push -u origin master -f
