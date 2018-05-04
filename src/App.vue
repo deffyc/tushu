@@ -89,7 +89,7 @@
                  <template slot-scope="scope">
                   <el-popover placement="bottom" @show="getSummary(scope.row)" @hide="initbookInfo()" title="基本信息">
                     <p style="text-align:center;" v-html="bookInfo.image"></p>
-                    <p>简介：{{ bookInfo.summary }}</p>
+                    <p>{{ scope.row.name }} 简介：{{ bookInfo.summary }}</p>
                     <p>页数：{{ bookInfo.pages }} , 价格：{{ scope.row.price }} 元</p>
                     <p>馆藏地：{{scope.row.no.split('/')[0]>='I25'?'二楼西室':'二楼东室'}}</p>
                     <p style="text-align:center;"><el-button type="danger" round @click.native.prevent="$refs.page.click()">关闭</el-button></p>
@@ -470,7 +470,7 @@
             that.bookInfo.pages=bookInfo.pages
             if(bookInfo.summary!=''){
               let book={
-                'image': bookInfo.image,
+                'image': "https://images.weserv.nl/?url="+bookInfo.image.replace("https://",""),//bookInfo.image,
                 'summary': bookInfo.summary
               }
               if(row.pageNum.length<=2 && bookInfo.pages.length>2){

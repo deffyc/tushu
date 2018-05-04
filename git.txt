@@ -2,3 +2,8 @@ git remote add origin git@github.com:deffyc/tushu.git
 git add *
 git commit -m 'upload'
 git push -u origin master:src -f
+
+cd disk
+git add *
+git commit -m 'upload'
+git push -u origin master -f
