@@ -17,7 +17,7 @@ export default {
           where['or'].push(fieldJson)
         }
     }
-    let filtedic = {'fields': fields, 'where': where, 'limit': pageSize, 'skip': (pageno - 1) * pageSize, 'order': 'createdAt DESC,no ASC'}
+    let filtedic = {'fields': fields, 'where': where, 'limit': pageSize, 'skip': (pageno - 1) * pageSize, 'order': 'createtime DESC,no ASC'}
     let url = 'https://d.apicloud.com/mcm/api/Book?filter='
     let methodstr = 'GET'
     ajax.cloudapi(url, methodstr, filtedic, callback)
