@@ -1,4 +1,7 @@
-npm run biuld
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
+source ~/.bashrc
+nvm install node 6.11.2
+npm run build
 cd ~/workspace
 git remote add origin git@github.com:deffyc/tushu.git
 git add *
