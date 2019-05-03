@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'vue-axios'
 import jsonp from 'jsonp'
 import sha1 from '../utils/sha1'
 export default {
@@ -32,7 +32,7 @@ export default {
     }
   },
   doubanapi: (isbn, callback) => {
-    jsonp('https://api.douban.com/v2/book/isbn/' + isbn, null, function (err, data) {
+    jsonp('https://douban.hj2z.com/v2/book/isbn/' + isbn, null, function (err, data) {
       if (err) {
         console.error(err.message)
         callback(null)

@@ -13,6 +13,7 @@ module.exports = {
   extends: 'standard',
   // required to lint *.vue files
   plugins: [
+    'vuefix',
     'html'
   ],
   // add your custom rules here
