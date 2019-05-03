@@ -1,6 +1,4 @@
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
-source ~/.bashrc
-nvm install node 6.11.2
+https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally
 npm run build
 cd ~/workspace
 git remote add origin git@github.com:deffyc/tushu.git
