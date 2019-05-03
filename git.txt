@@ -1,3 +1,4 @@
+ssh-keygen -t rsa -C "939493194@qq.com"
 npm run build
 cd ~/workspace
 git remote add origin git@github.com:deffyc/tushu.git
