@@ -1,0 +1,40 @@
+0 info it worked if it ends with ok
+1 verbose cli [ '/root/.nvm/versions/node/v4.4.6/bin/node',
+1 verbose cli   '/root/.nvm/versions/node/v4.4.6/bin/npm',
+1 verbose cli   'run',
+1 verbose cli   'build' ]
+2 info using npm@3.0.0
+3 info using node@v4.4.6
+4 verbose run-script [ 'prebuild', 'build', 'postbuild' ]
+5 info prebuild theme-chalk-preview@1.0.0
+6 info build theme-chalk-preview@1.0.0
+7 verbose unsafe-perm in lifecycle true
+8 info theme-chalk-preview@1.0.0 Failed to exec build script
+9 verbose stack Error: theme-chalk-preview@1.0.0 build: `node build/build.js`
+9 verbose stack Exit status 1
+9 verbose stack     at EventEmitter.<anonymous> (/root/.nvm/versions/node/v4.4.6/lib/node_modules/npm/lib/utils/lifecycle.js:222:16)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at EventEmitter.emit (events.js:172:7)
+9 verbose stack     at ChildProcess.<anonymous> (/root/.nvm/versions/node/v4.4.6/lib/node_modules/npm/lib/utils/spawn.js:24:14)
+9 verbose stack     at emitTwo (events.js:87:13)
+9 verbose stack     at ChildProcess.emit (events.js:172:7)
+9 verbose stack     at maybeClose (internal/child_process.js:827:16)
+9 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:211:5)
+10 verbose pkgid theme-chalk-preview@1.0.0
+11 verbose cwd /workspace/tushu.hj2z.com
+12 error Linux 3.10.0-693.5.2.el7.x86_64
+13 error argv "/root/.nvm/versions/node/v4.4.6/bin/node" "/root/.nvm/versions/node/v4.4.6/bin/npm" "run" "build"
+14 error node v4.4.6
+15 error npm  v3.0.0
+16 error code ELIFECYCLE
+17 error theme-chalk-preview@1.0.0 build: `node build/build.js`
+17 error Exit status 1
+18 error Failed at the theme-chalk-preview@1.0.0 build script 'node build/build.js'.
+18 error This is most likely a problem with the theme-chalk-preview package,
+18 error not with npm itself.
+18 error Tell the author that this fails on your system:
+18 error     node build/build.js
+18 error You can get their info via:
+18 error     npm owner ls theme-chalk-preview
+18 error There is likely additional logging output above.
+19 verbose exit [ 1, true ]

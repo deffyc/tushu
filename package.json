@@ -23,6 +23,7 @@
     "jszip": "^3.1.4",
     "object-assign": "^4.1.1",
     "vue": "^2.5.2",
+    "axios": "^0.18.0",
     "vue-axios": "^2.0.2",
     "vue-router": "^3.0.1"
   },

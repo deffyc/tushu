@@ -128,6 +128,11 @@
         </el-button-group>
       </el-main>
     </el-container>
+    <el-footer
+      height="30px"
+      :style="{ 'background-color': primaryColor }">
+      <a href="http://www.beian.miit.gov.cn/">晋ICP备15000770号-1</a>
+    </el-footer>
     <el-dialog
       center
       :visible.sync="themeDialogVisible"

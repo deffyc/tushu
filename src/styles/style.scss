@@ -93,6 +93,17 @@ header::after {
   vertical-align: middle
 }
 
+footer {
+  width: 100%;
+  padding: auto 20px 0;
+  z-index: 1;
+  box-sizing: border-box;
+  a {
+    color:#fff;
+  }
+}
+
+
 .theme-form {
   text-align: center;
 }

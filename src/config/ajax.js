@@ -1,6 +1,7 @@
-import axios from 'vue-axios'
+import axios from 'axios'
 import jsonp from 'jsonp'
 import sha1 from '../utils/sha1'
+
 export default {
   cloudapi: (url, method, data, callback) => {
     let AppId = 'A6054211052206'
@@ -32,7 +33,7 @@ export default {
     }
   },
   doubanapi: (isbn, callback) => {
-    jsonp('https://douban.hj2z.com/v2/book/isbn/' + isbn, null, function (err, data) {
+    jsonp('https://douban.uieee.com/v2/book/isbn/' + isbn, null, function (err, data) {
       if (err) {
         console.error(err.message)
         callback(null)
