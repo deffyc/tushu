@@ -470,7 +470,7 @@
             that.bookInfo.summary='暂无信息'
             that.bookInfo.pages='无'
           }else{
-            that.bookInfo.image='<img src="'+row.image.search("images.weserv.nl") != -1?bookInfo.image:("https://images.weserv.nl/?url="+row.image.replace("https://",""))+'">'
+            that.bookInfo.image='<img src="'+bookInfo.image.search("images.weserv.nl") != -1?bookInfo.image:("https://images.weserv.nl/?url="+row.image.replace("https://",""))+'">'
             that.bookInfo.summary=bookInfo.summary
             that.bookInfo.pages=bookInfo.pages
             if(bookInfo.summary!=''){
@@ -491,7 +491,7 @@
         if(typeof(row.summary)=='undefined' || row.summary==''){
             search.getDoubanInfo(row.isbn,callback)
         }else{
-            that.bookInfo.image='<img src="'+bookInfo.image.search("images.weserv.nl") != -1?bookInfo.image:("https://images.weserv.nl/?url="+bookInfo.image.replace("https://",""))+'">'
+            that.bookInfo.image='<img src="'+row.image.search("images.weserv.nl") != -1?row.image:("https://images.weserv.nl/?url="+row.image.replace("https://",""))+'">'
             that.bookInfo.summary=row.summary
             that.bookInfo.pages=row.pageNum
         }
