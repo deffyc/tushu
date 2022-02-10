@@ -417,7 +417,7 @@
           let that=this
           let loadingInstance = Loading.service({ fullscreen: true })
           let callback = function(data) {
-              that.girdData = data
+              that.girdData = typeof(data)=="undefined"?[]:data;
               loadingInstance.close()
             }
             search.getBooks(to.name, key, this.query.fields, this.query.type, pageno, callback)
@@ -429,7 +429,11 @@
             let loadingInstance = Loading.service({ fullscreen: true })
             let that=this
             let callback = function(data) {
-              that.girdData = data
+              if(typeof(data)!="undefined"){
+                that.girdData = data
+              }else{
+                that.girdData=[]
+              }
               if(data.length>0 && to.name=='categoryno'){
                 that.breadcrumbs = []
                 let parents= data[0].path.split(';')
@@ -463,6 +467,7 @@
         this.$router.push({name: routeName, query: {key:key, pageno: pageno, type: this.query.type.toString()}})
       },
       getSummary(row){
+        let cdn_prefix="//images.weserv.nl/?url={pic}&h=400";
         let that=this
         let callback=function(bookInfo){
           if(bookInfo == null){
@@ -470,12 +475,13 @@
             that.bookInfo.summary='暂无信息'
             that.bookInfo.pages='无'
           }else{
-            that.bookInfo.image='<img src="'+bookInfo.image.search("images.weserv.nl") != -1?bookInfo.image:("https://images.weserv.nl/?url="+row.image.replace("https://",""))+'">'
+            // that.bookInfo.image='<img src="'+(bookInfo.image.search("images.weserv.nl") != -1?bookInfo.image:("https://images.weserv.nl/?url="+row.image.replace("https://","")))+'">'
+            that.bookInfo.image='<img src="'+cdn_prefix.replace("{pic}",bookInfo.image.replace("https://",""))+'">'
             that.bookInfo.summary=bookInfo.summary
             that.bookInfo.pages=bookInfo.pages
             if(bookInfo.summary!=''){
               let book={
-                'image': "https://images.weserv.nl/?url="+bookInfo.image.replace("https://",""),//bookInfo.image,
+                'image': bookInfo.image.replace("https://",""),//bookInfo.image,
                 'summary': bookInfo.summary
               }
               if(row.pageNum.length<=2 && bookInfo.pages.length>2){
@@ -488,10 +494,11 @@
             }
           }
         }
-        if(typeof(row.summary)=='undefined' || row.summary==''){
+        //search.getDoubanInfo(row.isbn,callback)
+        if(typeof(row.summary)=='undefined' || row.summary=='' || row.image.search("images.weserv.nl") != -1){
             search.getDoubanInfo(row.isbn,callback)
         }else{
-            that.bookInfo.image='<img src="'+row.image.search("images.weserv.nl") != -1?row.image:("https://images.weserv.nl/?url="+row.image.replace("https://",""))+'">'
+            that.bookInfo.image='<img src="'+cdn_prefix.replace("{pic}",row.image.replace("https://",""))+'">'
             that.bookInfo.summary=row.summary
             that.bookInfo.pages=row.pageNum
         }

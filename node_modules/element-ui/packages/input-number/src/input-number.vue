@@ -168,7 +168,7 @@
         return this.size || this._elFormItemSize || (this.$ELEMENT || {}).size;
       },
       inputNumberDisabled() {
-        return this.disabled || (this.elForm || {}).disabled;
+        return this.disabled || !!(this.elForm || {}).disabled;
       },
       displayValue() {
         if (this.userInput !== null) {
@@ -195,7 +195,7 @@
     methods: {
       toPrecision(num, precision) {
         if (precision === undefined) precision = this.numPrecision;
-        return parseFloat(Number(num).toFixed(precision));
+        return parseFloat(Math.round(num * Math.pow(10, precision)) / Math.pow(10, precision));
       },
       getPrecision(value) {
         if (value === undefined) return 0;

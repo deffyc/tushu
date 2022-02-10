@@ -1,6 +1,29 @@
+1. 安装nvm:
+windows:https://github.com/coreybutler/nvm-windows
+linux:https://github.com/nvm-sh/nvm
+2. 删除nvm自带node版本
+nvm list
+nvm unnistall *
+3. 安装并使用node v6.17.1
+nvm install v6.17.1
+nvm use v6.17.1
+4.安装项目依赖，出错则删除包重新安装
+npm install -d
+5. 注意windows下的node-saas包需要使用pyhon2.7进行编译
+npm unnistall node-saas
+conda config --set auto_activate_base false
+conda create -n py27 python=2.7
+conda activate py27
+6. 重新安装缺失包：
+npm install -d
+
 npm install
 npm run build
 cd ~/workspace
+
+git config --global user.email "deffyc@gmail.com"
+git config --global user.name "deffyc"
+
 git remote add origin git@github.com:deffyc/tushu.git
 //git@git.dev.tencent.com:ccsyue/tushu.hj2z.com.git
 git remote add origin git@e.coding.net:ccsyue/tushu.hj2z.com.git

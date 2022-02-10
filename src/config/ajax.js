@@ -13,7 +13,8 @@ export default {
       case 'GET':
         axios.get(url + encodeURIComponent(JSON.stringify(data)), {headers: headers})
           .then(function (response) {
-            callback(response.data)
+            //  console.log(response)
+            callback(response)
           })
           .catch(function (error) {
             console.log(error)
@@ -33,7 +34,7 @@ export default {
     }
   },
   doubanapi: (isbn, callback) => {
-    jsonp('https://douban.ccsyue.cn/v2/book/isbn/' + isbn, null, function (err, data) {
+    jsonp('http://douban.hj2z.com/v2/book/isbn/' + isbn, null, function (err, data) {
       if (err) {
         console.error(err.message)
         callback(null)
