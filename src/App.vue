@@ -1,3 +1,4 @@
+ls
 <template>
   <el-container class="wrapper">
     <el-header
@@ -488,7 +489,7 @@
                 book['pageNum']=bookInfo.pages
               }
               let callback=function(data){
-                //console.log(data)
+                console.log(data)
               }
               search.saveBook(row.id,book,callback)
             }
