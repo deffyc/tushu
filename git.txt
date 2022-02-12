@@ -16,10 +16,13 @@ conda create -n py27 python=2.7
 conda activate py27
 6. 重新安装缺失包：
 npm install -d
+7. gh-pages命令或出错，删除出错的包并且运行
+npm install gh-pages@1.2.0 --save-dev
 
 npm install
 npm run build
 cd ~/workspace
+
 
 git config --global user.email "deffyc@gmail.com"
 git config --global user.name "deffyc"
