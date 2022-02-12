@@ -1,4 +1,3 @@
-ls
 <template>
   <el-container class="wrapper">
     <el-header
@@ -468,7 +467,10 @@ ls
         this.$router.push({name: routeName, query: {key:key, pageno: pageno, type: this.query.type.toString()}})
       },
       getSummary(row){
-        let cdn_prefix="//images.weserv.nl/?url={pic}&h=400";
+        // https://thumbnail.7s3s.cn/
+        // https://imageresize.24i.com/
+        // images.weserv.nl
+        let cdn_prefix="//imageresize.24i.com/?url={pic}&h=400";
         let that=this
         let callback=function(bookInfo){
           if(bookInfo == null){
@@ -489,7 +491,7 @@ ls
                 book['pageNum']=bookInfo.pages
               }
               let callback=function(data){
-                console.log(data)
+                //console.log(data)
               }
               search.saveBook(row.id,book,callback)
             }

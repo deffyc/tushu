@@ -34,7 +34,7 @@ export default {
     }
   },
   doubanapi: (isbn, callback) => {
-    jsonp('http://douban.hj2z.com/v2/book/isbn/' + isbn, null, function (err, data) {
+    jsonp('https://douban.ccsyue.com/v2/book/isbn/' + isbn, null, function (err, data) {
       if (err) {
         console.error(err.message)
         callback(null)
