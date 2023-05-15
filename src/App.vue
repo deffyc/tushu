@@ -493,7 +493,7 @@
               let callback=function(data){
                 //console.log(data)
               }
-              search.saveBook(row.id,book,callback)
+              //search.saveBook(row.id,book,callback)
             }
           }
         }
