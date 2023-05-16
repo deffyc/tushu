@@ -34,7 +34,10 @@ git add *
 git commit -m 'upload'
 git push -u origin src:src -f
 
-cd dist
+/*cd dist
 git add *
 git commit -m 'upload'
-git push -u origin master:master -f
+git push -u origin master:master -f*/
+//https://www.learnhowtoprogram.com/intermediate-javascript/team-week/hosting-a-webpack-project-with-gh-pages
+//npm install --save-dev gh-pages
+gh-pages -d dist
