@@ -17,7 +17,7 @@ export default {
           // let fieldJson = {}
           // fieldJson[type[i]] = {'like': (type[i] === 'no' ? '^' : '') + key + '.*'}
           // where['or'].push(fieldJson)
-          where = where + '&filter' + (i + 1) + '=no,sw,' + key
+          where = where + '&filter' + (i + 1) + '=' + type[i] + ',' + (type[i] === 'no' ? 'sw' : 'cs') + ',' + key
         }
     }
     // let filtedic = {'fields': fields, 'where': where, 'limit': pageSize, 'skip': (pageno - 1) * pageSize, 'order': 'createtime DESC,no ASC'}
@@ -41,7 +41,7 @@ export default {
           // let fieldJson = {}
           // fieldJson[type[i]] = {'like': '%' + key + '%'}
           // where['or'].push(fieldJson)
-          where = where + '&filter' + (i + 1) + '=sw,' + key
+          where = where + '&filter' + (i + 1) + '=' + type[i] + ',' + (type[i] === 'pno' ? 'sw' : 'cs') + ',' + key
         }
     }
     // let filtedic = {'fields': fields, 'where': where, 'limit': pageSize, 'skip': (pageno - 1) * pageSize, 'order': 'sort_num ASC'}
