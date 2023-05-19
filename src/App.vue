@@ -470,7 +470,7 @@
         // https://thumbnail.7s3s.cn/
         // https://imageresize.24i.com/
         // images.weserv.nl
-        let cdn_prefix="//imageresize.24i.com/?url={pic}&h=400";
+        let cdn_prefix="//images.weserv.nl/?url={pic}&h=400";
         let that=this
         let callback=function(bookInfo){
           if(bookInfo == null){
